@@ -1,4 +1,9 @@
+// First import all packages
 import 'package:flutter/material.dart';
+
+//Then import all project files
+import './question.dart';
+import './answer.dart';
 
 void main() {
   // Entry Point of Application
@@ -6,10 +11,26 @@ void main() {
   runApp(QuizApp());
 }
 
-class QuizApp extends StatelessWidget {
+class QuizApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _QuizAppState();
+  }
+}
 
-  void chooseAnswer() {
+class _QuizAppState extends State<QuizApp> {
+  var _questionIndex = 0;
+  var _questionLimit = 1;
+
+  void _chooseAnswer() {
+    setState(() {
+      if (_questionIndex < _questionLimit) {
+        _questionIndex += 1;
+      }
+    });
     print('Answer Chosen');
+    print(_questionIndex);
   }
 
   @override
@@ -23,21 +44,25 @@ class QuizApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Quiz App'),
         ),
-        body: Column(children: [
-          Text('The question!'),
-          RaisedButton(
-            child: Text('Answer 1'),
-            onPressed: () => chooseAnswer(),
-          ),
-          RaisedButton(
-            child: Text('Answer 2'),
-            onPressed: () => chooseAnswer(),
-          ),
-          RaisedButton(
-            child: Text('Answer 3'),
-            onPressed: () => chooseAnswer(),
-          ),
-        ],),
+        body: Column(
+          children: [
+            Question(
+              questions[_questionIndex],
+            ),
+            Answer(
+              'Answer 1',
+              _chooseAnswer,
+            ),
+            Answer(
+              'Answer 2',
+              _chooseAnswer,
+            ),
+            Answer(
+              'Answer 3',
+              _chooseAnswer,
+            ),
+          ],
+        ),
       ),
     );
   }
