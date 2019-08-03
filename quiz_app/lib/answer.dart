@@ -4,7 +4,7 @@ class Answer extends StatelessWidget {
   final String answerText;
   final Function chooseAnswer;
 
-  Answer(this.answerText, this.chooseAnswer);
+  Answer(this.answerText, this.chooseAnswer,);
 
 
   @override
