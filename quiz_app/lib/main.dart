@@ -15,6 +15,7 @@ class QuizApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
+    
     return _QuizAppState();
   }
 }
@@ -89,10 +90,12 @@ class _QuizAppState extends State<QuizApp> {
   ];
 
   void _resetQuiz() {
-    setState(() => {
-      _questionIndex = 0;
-      _totalScore = 0;
-    });
+    setState(
+      () => {
+        _questionIndex = 0;
+        _totalScore = 0;
+      }
+    );
   }
 
   void _answerQuestion(int score) {

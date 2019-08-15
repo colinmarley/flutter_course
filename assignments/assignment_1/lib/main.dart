@@ -30,7 +30,7 @@ class _AssignmentOneState extends State<AssignmentOne> {
       });
     } else {
       setState(() => {
-        _currentInd = 0
+        _currentInd = 0 
       });
     }
   }
