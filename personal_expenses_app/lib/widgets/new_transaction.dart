@@ -15,9 +15,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
   void submitData() {
     final enteredTitle = titleController.text;
-    print('here');
     final enteredAmount = double.parse(amountController.text);
-    print(enteredAmount);
 
     if (enteredTitle.isEmpty || enteredAmount <= 0) {
       print('Didn\'t add');
@@ -29,7 +27,7 @@ class _NewTransactionState extends State<NewTransaction> {
       enteredAmount,
     );
 
-    Navigator.of(context).pop();    //closes the topmost screen that is displayed
+    Navigator.of(context).pop();    //closes the top-most screen that is displayed
   }
 
   @override
