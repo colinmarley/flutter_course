@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DeviceCard extends StatelessWidget {
-  // final String deviceName;
-  // final String 
+import '../models/device.dart';
 
+class DeviceCard extends StatelessWidget {
+  final Device device;
+
+  DeviceCard(this.device);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,12 @@ class DeviceCard extends StatelessWidget {
       height: 70,
       child: Card(
         child: ListTile(
-          title: Text('Device 1 Name'),
+          title: Column(
+            children: <Widget>[
+              Text('name: ${device.name}'),
+              Text('id: ${device.id}'),
+            ],
+          ),
           leading: Icon(Icons.bluetooth),
           trailing: RaisedButton(
             elevation: 5,

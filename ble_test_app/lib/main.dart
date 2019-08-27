@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
 import './widgets/device_list.dart';
+import './widgets/scan_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -63,50 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            RaisedButton(
-              child: Text('Scan'),
-              elevation: 5,
-              onPressed: () {
-                print('Starting');
-                _flutterBlue
-                    .scan(
-                  timeout: Duration(seconds: 5),
-                )
-                    .listen((scanResult) {
-                  var seen = false;
-                  for (var i = 0; i < _devices.length; i++) {
-                    if (_devices[i] == scanResult.device.id) {
-                      seen = true;
-                      break;
-                    }
-                  }
-
-                  if (!seen) {
-                    setState(() {
-                      _devices.add(scanResult.device.id);
-                    });
-                  }
-
-                  print(scanResult.device.id);
-                }, onDone: () {
-                  print('Done');
-                  print(_devices);
-                });
-              },
-            ),
-            RaisedButton(
-              child: Text('cancel'),
-              onPressed: () {},
-            ),
-            Container(
-              child: DeviceList(),
-              height: 400,
-            ),
-          ],
-        ),
+        child: ScanPage(),
       ),
     );
   }

@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
 
+import '../models/device.dart';
+import './device_card.dart';
+
 class DeviceList extends StatefulWidget {
+  final List<Device> devices;
+
+  DeviceList(this.devices);
   @override
   _DeviceListState createState() => _DeviceListState();
 }
 
 class _DeviceListState extends State<DeviceList> {
-  final _devices = <Widget>[];
 
   Widget _buildDeviceList() {
     return ListView.builder(
-      itemCount: 50,
+      itemCount: widget.devices.length,
       itemBuilder: (BuildContext ctx, int ind) {
         return Container(
           alignment: Alignment.center,
           margin: EdgeInsets.all(10),
           height: 70,
-          child: Card(
-            child: ListTile(
-              title: Text('Device ${ind + 1} Name'),
-              leading: Icon(Icons.bluetooth),
-              trailing: RaisedButton(
-                elevation: 5,
-                child: Text('Connect'),
-                onPressed: () {},
-              ),
-            ),
-          ),
+          child: DeviceCard(widget.devices[ind],),
         );
       },
     );
